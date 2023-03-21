@@ -46,23 +46,27 @@ class JobTracking extends Model
     public static function createJobTracking($type, $params) {
         return JobTracking::create(array('type'=> $type), $params);
     }
-    public static function incrementProcessedJob($tracking_id,$insert_result = true, $is_success = true) {
-        DB::table(config('jobtracking.table_name'))->where('id', '=', $tracking_id)->lockForUpdate()->increment('processed_job');
+    public static function incrementProcessedJob($tracking_id,$insert_result = true, $is_success = true,  $num_record =1) {
+        DB::table(config('jobtracking.table_name'))->where('id', '=', $tracking_id)->lockForUpdate()->increment('processed_job', $num_record);
         if ($insert_result) {
             if($is_success) {
-                self::incrementSuccessProccesed($tracking_id);
+                self::incrementSuccessProccesed($tracking_id, $num_record);
             }else {
-                self::incrementFailProccesed($tracking_id);
+                self::incrementFailProccesed($tracking_id, $num_record);
             }
         }
 
     }
-    public static function incrementSuccessProccesed($tracking_id) {
-        DB::table(config('jobtracking.table_name'))->where('id', '=', $tracking_id)->lockForUpdate()->increment('success_job');
+    public static function incrementSuccessProccesed($tracking_id,  $num_record =1) {
+        DB::table(config('jobtracking.table_name'))->where('id', '=', $tracking_id)->lockForUpdate()->increment('success_job', $num_record);
     }
 
-    public static function incrementFailProccesed($tracking_id) {
-        DB::table(config('jobtracking.table_name'))->where('id', '=', $tracking_id)->lockForUpdate()->increment('failed_job');
+    public static function incrementFailProccesed($tracking_id, $num_record =1) {
+        DB::table(config('jobtracking.table_name'))->where('id', '=', $tracking_id)->lockForUpdate()->increment('failed_job', $num_record);
     }
+    public static function incrementTotal($tracking_id, $num_record =1) {
+        DB::table(config('jobtracking.table_name'))->where('id', '=', $tracking_id)->lockForUpdate()->increment('success_job', $num_record);
+    }
+
 
 }
