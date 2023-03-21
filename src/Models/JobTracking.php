@@ -65,7 +65,7 @@ class JobTracking extends Model
         DB::table(config('jobtracking.table_name'))->where('id', '=', $tracking_id)->lockForUpdate()->increment('failed_job', $num_record);
     }
     public static function incrementTotal($tracking_id, $num_record =1) {
-        DB::table(config('jobtracking.table_name'))->where('id', '=', $tracking_id)->lockForUpdate()->increment('success_job', $num_record);
+        DB::table(config('jobtracking.table_name'))->where('id', '=', $tracking_id)->lockForUpdate()->increment('total_job', $num_record);
     }
 
 
