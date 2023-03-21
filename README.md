@@ -28,7 +28,7 @@ create instance
                                                                            'failed_job'=>0])
 ```
 
-increment job processed
+increment job processed, add success 
 ```php
 \Upbase\Jobtracking\Models\JobTracking::incrementProcessedJob(1,true, true);
 ``` 
