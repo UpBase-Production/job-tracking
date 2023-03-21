@@ -6,6 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 
+/**
+ * Class JobTracking
+ * @package Upbase\Jobtracking\Models
+ * @property string $type
+ * @property integer $sme_id
+ * @property integer $store_id
+ * @property integer $total_job
+ * @property integer $processed_job
+ * @property integer $success_job
+ * @property integer $failed_job
+ */
 class JobTracking extends Model
 {
     public function getTable()
