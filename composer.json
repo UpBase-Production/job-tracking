@@ -1,6 +1,7 @@
 {
     "name": "upbase-package/jobtracking",
     "description": "Track job processed",
+    "license": "MIT",
     "require": {
 
     },
