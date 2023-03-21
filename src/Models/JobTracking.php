@@ -38,6 +38,11 @@ class JobTracking extends Model
         'failed_job',
     ];
 
+    /**
+     * @param $type
+     * @param $params
+     * @return JobTracking
+     */
     public static function createJobTracking($type, $params) {
         return JobTracking::create(array('type'=> $type), $params);
     }
